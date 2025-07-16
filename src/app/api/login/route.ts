@@ -16,6 +16,7 @@ export async function POST(req: NextRequest) {
         if (!body.email || !body.password) return NextResponse.json({
             message: "Please enter email and password"
         })
+        
         const hasPassword = createHash('sha256').update(body.password).digest('hex')
         console.log(hasPassword)
         const user = await prisma.user.findFirst({
